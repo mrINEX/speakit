@@ -13,6 +13,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      favicon: './src/assets/img/favicon.jpg',
       title: 'speakit',
       filename: 'index.html', // [duild]: filename: '../index.html' [watch] filename: 'index.html'
     }),

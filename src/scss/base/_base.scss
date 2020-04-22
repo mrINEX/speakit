@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    color: darkslategray;
+    font-family: monospace, sans-serif;
+    @include font($size: 1.6rem, $weight: normal);
+}
+
+.event-none {
+    pointer-events: none;
+}
+
+.not-active {
+    opacity: 0.3;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    display: inline-block;
+    margin: 0 auto;
+    appearance: none;
+    font-size: 24px;
+    text-align: center;
+    padding: 15px 25px;
+    text-decoration: none;
+    min-width: 200px;
+    color: #fff;
+    background: #00c49d;
+    border-radius: 4px;
+    visibility: visible;
+    transition: .15s;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12);
+}

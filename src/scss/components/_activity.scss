@@ -1,0 +1,29 @@
+.main__activity {
+    display: flex;
+}
+
+.voice {
+    width: 300px;
+    margin: 0 30px;
+}
+
+.voice-active {
+    animation: 0.5s infinite alternate opacit;
+}
+
+.input-voice {
+    font-family: monospace;
+    width: 300px;
+    height: 30px;
+    font-size: larger;
+}
+
+@keyframes opacit {
+    from {
+        opacity: 100%;
+    }
+    
+    to {
+        opacity: 30%;
+    }
+}

@@ -1,0 +1,18 @@
+.wrapper {
+    max-width: $laptop-width;
+    margin: auto;
+}
+
+.header {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.header__wrapper {
+    padding: 3vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.main__wrapper {
+    padding: 3vw;
+}
