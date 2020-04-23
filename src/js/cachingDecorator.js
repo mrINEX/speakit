@@ -3,13 +3,9 @@ function cachingDecorator(func) {
 
   return function dec(x) {
     if (cache.has(x)) {
-      console.log('cach:', x);
       return cache.get(x);
     }
-    console.log('not cach:', x);
-
     const result = func(x);
-
     cache.set(x, result);
     return result;
   };

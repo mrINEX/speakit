@@ -15,8 +15,20 @@ const header = document.createElement('header');
 header.setAttribute('class', 'header');
 header.innerHTML = `
     <div class="wrapper header__wrapper">
-        <span> ... dots ... </span> <h2 class="level"> level 1</h2>
+        <div class="header__level">
+            <input class="level_range" type="range" value="0" min="0" max="5" step="1" list="tickmarks">
+            <datalist id="tickmarks">
+                <option value="0">
+                <option value="1">
+                <option value="2">
+                <option value="3">
+                <option value="4">
+                <option value="5">
+            </datalist>
+        </div>
+        <h2 class="level_chapter"> level 1</h2>
     </div>
+    <div class="wrapper statistics-image"></div>
 `;
 document.querySelector('body').append(header);
 
@@ -33,7 +45,7 @@ main.innerHTML = `
         <div class="main__node-words"></div>
         <div class="main__activity">
             <a class="btn restart">Restart</a>
-            <a class="btn voice user-speach">Speak please</a>
+            <a class="btn voice user-speach">start speak</a>
             <a class="btn result">Results</a>
         </div>
     </div>

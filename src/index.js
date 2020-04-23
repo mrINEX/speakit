@@ -3,18 +3,28 @@ const { nodeDOM } = require('./js/cachingDecorator');
 const { translate } = require('./js/translate');
 const { speechInput } = require('./js/speechInput');
 const { getWords } = require('./js/getWords');
-const { getAudio } = require('./js/getAudio');
-const { getImage } = require('./js/getImage');
+const { getAudio, audio } = require('./js/getAudio');
+const { getImage, image } = require('./js/getImage');
 
 window.onload = () => {
-  getWords(1);
+  getWords(0);
   nodeDOM('.main').classList.remove('hidden');
 
   //   nodeDOM('.intro-btn').onclick = () => {
   //     nodeDOM('.main').classList.remove('hidden');
   //     nodeDOM('.intro').classList.add('hidden');
   //   };
-  const nodes = nodeDOM('.main__node-words').children;
+
+  nodeDOM('.level_range').addEventListener('change', ({ target }) => {
+    nodeDOM('.level_chapter').textContent = `level ${Number(target.value) + 1}`;
+    nodeDOM('.wrapper_image').innerHTML = '<img class="word-image" src="./src/assets/img/blank.jpg">';
+    nodeDOM('.main__node-words').innerHTML = '';
+    getWords(target.value, !!document.querySelector('.input-voice'));
+    if (!document.querySelector('.input-voice')) {
+      nodeDOM('.summary_translate').innerHTML = '';
+    }
+  });
+
   nodeDOM('.main__node-words').addEventListener('click', ({ target }) => {
     if (target.classList.contains('node')) {
       const active = document.querySelector('.word-node_active');
@@ -30,19 +40,33 @@ window.onload = () => {
   });
 
   nodeDOM('.user-speach').addEventListener('click', ({ target }) => {
-    target.classList.add('voice-active');
+    const nodeWords = document.querySelectorAll('.word-node');
+    nodeDOM('.user-speach').textContent = 'click to continue';
+
+    target.classList.add('button-continue');
     if (!document.querySelector('.input-voice')) {
       nodeDOM('.summary_translate').innerHTML = '<input class="input-voice">';
     }
     nodeDOM('.input-voice').focus();
     nodeDOM('.input-voice').onclick = (event) => {
-      const speechResult = event.target.value;
-      console.log(speechResult);
+      const isCorrect = [...nodeWords].filter((node) => node.getAttribute('data-word') === event.target.value);
+      if (isCorrect.length) {
+        // nodeDOM('.wrapper_image').innerHTML = getImage(isCorrect[0].getAttribute('data-image'));
+        // getAudio(isCorrect[0].getAttribute('data-audio')).play();
+        isCorrect[0].classList.add('correct-speech');
+        audio.correct().play();
+        nodeDOM('.statistics-image').append(image.getCorrectImage());
+      } else {
+        audio.error().play();
+        nodeDOM('.statistics-image').append(image.getNotCorrectImage());
+      }
+      setTimeout(() => { nodeDOM('.input-voice').value = ''; }, 1500);
     };
-    for (let i = 0; i < nodes.length; i += 1) {
-      nodes[i].classList.add('voice-active');
-      nodes[i].classList.remove('word-node_active', 'node');
-    }
-    speechInput(nodes);
+
+    nodeWords.forEach((node) => {
+      node.classList.add('voice-active');
+      node.classList.remove('word-node_active', 'node');
+    });
+    speechInput(nodeWords);
   });
 };

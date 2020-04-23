@@ -3,10 +3,12 @@ function getAudio(audio) {
   return new Audio(url);
 }
 
-// function getActivitySong() {
-//   return new Audio('./src/assets/audio/please-say.mp3');
-// }
+const audio = {
+  correct: () => new Audio('./src/assets/audio/correct.mp3'),
+  error: () => new Audio('./src/assets/audio/error.mp3'),
+};
 
 module.exports = {
   getAudio,
+  audio,
 };

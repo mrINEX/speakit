@@ -10,9 +10,13 @@ class Word {
     this.textMeaning = textMeaning;
   }
 
-  getWordNode() {
+  getWordNode(isSpeech) {
     const div = document.createElement('div');
-    div.setAttribute('class', 'word-node node');
+    if (isSpeech) {
+      div.setAttribute('class', 'word-node');
+    } else {
+      div.setAttribute('class', 'word-node node');
+    }
     div.setAttribute('data-audio', `${this.audio.replace(/files/, 'data')}`);
     div.setAttribute('data-image', `${this.image.replace(/files/, 'data')}`);
     div.setAttribute('data-word', `${this.word}`);
