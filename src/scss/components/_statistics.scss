@@ -17,9 +17,12 @@
 
 .statistics__results {
     margin: 1vw;
-    width: 70%;
+    width: 80%;
     height: 80%;
     display: flex;
+    @include media-mobiles-small {
+        flex-direction: column;
+    }
 }
 
 .wrapper_current {
@@ -29,11 +32,19 @@
     background: whitesmoke;
 }
 
+.wrapper_current-allgame {
+    background: #d2b755;
+    border: 2px solid;
+    display: inline-block;
+    margin: 5px;
+    width: 70%;
+}
+
 .wrapper_all {
     width: 60%;
     position: relative;
     overflow-y: auto;
-    background-color: yellowgreen;
+    background-color: #84b1bd;
 }
 
 .statistics__word {
@@ -50,8 +61,40 @@
     }
 }
 
+.all-game-word {
+    height: 20px;
+    display: flex;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
 .title-results {
     position: sticky;
     top: 0;
-    background-color: darkgray;
+    padding: 10px;
+    background-color: #ffaa7d;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.title-results-allgame {
+    padding: 3px 6px;
+    background-color: #beff7d;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.know {
+    color: rgb(13, 185, 13);
+}
+
+.errors-speech {
+    color: rgb(233, 28, 21);
+}
+
+.date-stapm-game {
+    background: darkslategray;
+    color: white;
+    height: 25px;
 }

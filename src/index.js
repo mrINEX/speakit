@@ -2,20 +2,33 @@ require('./js/createMainPage');
 const { nodeDOM } = require('./js/cachingDecorator');
 const { translate } = require('./js/translate');
 const { speechInput } = require('./js/speechInput');
-const { getWords, currentWords } = require('./js/getWords');
+const { getWords } = require('./js/getWords');
 const { getAudio, audio } = require('./js/getAudio');
 const { getImage, image } = require('./js/getImage');
+const { storageGame } = require('./js/allGames');
 
 window.onload = () => {
   getWords(0);
-  nodeDOM('.main').classList.remove('hidden');
-  nodeDOM('.intro').classList.add('hidden');
-  // nodeDOM('.intro-btn').onclick = () => {
-  //   nodeDOM('.main').classList.remove('hidden');
-  //   nodeDOM('.intro').classList.add('hidden');
-  // };
+
+  const games = window.localStorage.getItem('games');
+  if (games) {
+    const arr = JSON.parse(games);
+    const allResult = document.querySelector('.all_statistics');
+    arr.forEach((node) => {
+      const wrapper = document.createElement('div');
+      wrapper.setAttribute('class', 'wrapper_current-allgame');
+      wrapper.innerHTML = node;
+      allResult.append(wrapper);
+    });
+  }
+
+  nodeDOM('.intro-btn').onclick = () => {
+    nodeDOM('.main').classList.remove('hidden');
+    nodeDOM('.intro').classList.add('hidden');
+  };
 
   nodeDOM('.level_range').addEventListener('change', ({ target }) => {
+    storageGame(document.querySelector('.wrapper_current').cloneNode(true));
     nodeDOM('.level_chapter').textContent = `level ${Number(target.value) + 1}`;
     nodeDOM('.wrapper_image').innerHTML = '<img class="word-image" src="./src/assets/img/blank.jpg">';
     nodeDOM('.main__node-words').innerHTML = '';
@@ -45,10 +58,13 @@ window.onload = () => {
   });
 
   nodeDOM('.current_statistics').addEventListener('click', ({ target }) => {
-    getAudio(target.getAttribute('data-audio')).play();
+    if (target.classList.contains('statistics__word')) {
+      getAudio(target.getAttribute('data-audio')).play();
+    }
   });
 
   nodeDOM('.restart').addEventListener('click', () => {
+    storageGame(document.querySelector('.wrapper_current').cloneNode(true));
     nodeDOM('.wrapper_image').innerHTML = '<img class="word-image" src="./src/assets/img/blank.jpg">';
     nodeDOM('.main__node-words').innerHTML = '';
     nodeDOM('.summary_translate').innerHTML = '';
@@ -63,6 +79,7 @@ window.onload = () => {
   });
 
   nodeDOM('.new').addEventListener('click', () => {
+    storageGame(document.querySelector('.wrapper_current').cloneNode(true));
     nodeDOM('.wrapper_image').innerHTML = '<img class="word-image" src="./src/assets/img/blank.jpg">';
     nodeDOM('.main__node-words').innerHTML = '';
     nodeDOM('.summary_translate').innerHTML = '';
@@ -108,11 +125,11 @@ window.onload = () => {
         isCorrect[0].classList.add('correct-speech');
         audio.correct().play();
         nodeDOM('.statistics-image').prepend(image.getCorrectImage());
-        const current = document.querySelector(`[data-word-${event.target.value}]`);
-        current.append(image.getCorrectImage());
-        current.classList.add('correct-speech');
-        know.textContent = know.textContent < 10 ? Number(know.textContent) + 1 : 10;
-        pending.textContent = pending.textContent > 0 ? Number(pending.textContent) - 1 : 0;
+
+        const current = [...document.querySelectorAll('[data-word-statistics]')];
+        const nodeStatistics = current.filter((node) => node.getAttribute('data-word-statistics') === event.target.value);
+        nodeStatistics[0].append(image.getCorrectImage());
+        nodeStatistics[0].classList.add('correct-speech');
       } else {
         audio.error().play();
         nodeDOM('.statistics-image').prepend(image.getNotCorrectImage());
@@ -120,6 +137,8 @@ window.onload = () => {
       setTimeout(() => { input.value = ''; }, 500);
 
       const isEnd = [...nodeWords].filter((node) => node.classList.contains('correct-speech'));
+      know.textContent = isEnd.length;
+      pending.textContent = 10 - Number(isEnd.length);
       if (isEnd.length === 10) {
         nodeDOM('.main').classList.add('hidden');
         nodeDOM('.statistics').classList.remove('hidden');

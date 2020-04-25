@@ -55,19 +55,19 @@ document.querySelector('body').append(main);
 const statistics = document.createElement('div');
 statistics.setAttribute('class', 'statistics hidden');
 statistics.innerHTML = `
-    <div class="statistics__results">
+    <div class=" wrapper statistics__results">
         <div class="wrapper_current">
             <div class="title-results">
-                know: <strong class="know">0</strong>
-                pending: <strong class="pending">10</strong>
-                errors speech: <strong class="errors-speech">0</strong>
+                <p>know: <strong class="know">0</strong></p>
+                <p>pending: <strong class="pending">10</strong></p>
+                <p>errors speech: <strong class="errors-speech">0</strong></p>
             </div>
             <div class="current_statistics">
             </div>
         </div>
         <div class="wrapper_all">
             <div class="title-results">
-                all words: <strong class="all-result-words">10</strong>
+                all games: <strong class="all-result-words">0</strong>
             </div>
             <div class="all_statistics">
             </div>
