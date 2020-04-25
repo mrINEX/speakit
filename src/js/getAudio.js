@@ -1,5 +1,5 @@
 function getAudio(audio) {
-  const url = `https://raw.githubusercontent.com/mrINEX/rslang-data/master/${audio}`;
+  const url = `./src/assets/${audio}`;// `https://raw.githubusercontent.com/mrINEX/rslang-data/master/${audio}`;
   return new Audio(url);
 }
 
