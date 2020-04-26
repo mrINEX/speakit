@@ -11,14 +11,9 @@ const image = {
     img.setAttribute('class', 'event-none');
     return img;
   },
-  getNotCorrectImage: () => {
-    const img = document.createElement('img');
-    img.setAttribute('style', 'height: 100%;');
-    img.setAttribute('src', './src/assets/img/no.jpg');
-    img.setAttribute('class', 'event-none');
+  error: () => {
     const errors = document.querySelector('.errors-speech');
     errors.textContent = Number(errors.textContent) + 1;
-    return img;
   },
 };
 

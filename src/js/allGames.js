@@ -19,8 +19,8 @@ function walkTree(node, dateStorage) {
       node.setAttribute('class', 'game-ten-words');
     }
     if (node.classList.contains('statistics__word')) {
-      node.removeAttribute('class');
-      node.setAttribute('class', 'all-game-word');
+      node.classList.remove('statistics__word');
+      node.classList.add('all-game-word');
     }
     if (node.classList.contains('micro-word')) {
       node.classList.add('hidden');

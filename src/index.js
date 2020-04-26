@@ -13,6 +13,7 @@ window.onload = () => {
   const games = window.localStorage.getItem('games');
   if (games) {
     const arr = JSON.parse(games);
+    document.querySelector('.all-result-words').textContent = arr.length;
     const allResult = document.querySelector('.all_statistics');
     arr.forEach((node) => {
       const wrapper = document.createElement('div');
@@ -132,7 +133,7 @@ window.onload = () => {
         nodeStatistics[0].classList.add('correct-speech');
       } else {
         audio.error().play();
-        nodeDOM('.statistics-image').prepend(image.getNotCorrectImage());
+        image.error();
       }
       setTimeout(() => { input.value = ''; }, 500);
 
