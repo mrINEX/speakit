@@ -9,13 +9,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  mode: 'development', // production
+  mode: 'production',
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       favicon: './src/assets/img/favicon.jpg',
       title: 'speakit',
-      filename: 'index.html', // [duild]: filename: '../index.html' [watch] filename: 'index.html'
+      filename: '../index.html', // [duild]: filename: '../index.html' [watch] filename: 'index.html'
     }),
     new MiniCssExtractPlugin({
       filename: 'style.css'
