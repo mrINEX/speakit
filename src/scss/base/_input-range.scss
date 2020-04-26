@@ -1,0 +1,62 @@
+.level_range {
+  -webkit-appearance: none;
+  height: 10px;
+  border-radius: 5px;
+  background: #72ceb2;
+  outline: none;
+  &:hover {
+      opacity: 0.7;
+  }
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.header__level {
+  position: relative;
+}
+
+.level_1,
+.level_2,
+.level_3,
+.level_4,
+.level_5,
+.level_6 {
+  position: absolute;
+}
+
+.level_1 {
+  left: 6px;
+}
+.level_2 {
+  left: 28px;
+}
+.level_3 {
+  left: 50px;
+}
+.level_4 {
+  left: 72px;
+}
+.level_5 {
+  left: 95px;
+}
+.level_6 {
+  left: 116px;
+}
+
+.level_range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: darkslategray;
+  cursor: pointer;
+}
+
+.level_range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: darkslategray;
+  cursor: pointer;
+}

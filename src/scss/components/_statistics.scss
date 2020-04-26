@@ -26,10 +26,11 @@
 }
 
 .wrapper_current {
+    @extend %custom-scroll;
     width: 40%;
     position: relative;
     overflow-y: auto;
-    background: whitesmoke;
+    background: rgba(245, 245, 245, 0.479);
 }
 
 .wrapper_current-allgame {
@@ -41,10 +42,11 @@
 }
 
 .wrapper_all {
-    width: 60%;
+    @extend %custom-scroll;
+    width: 600px;
     position: relative;
     overflow-y: auto;
-    background-color: #84b1bd;
+    background-color: #84b1bd7d;
 }
 
 .statistics__word {
@@ -68,11 +70,21 @@
     overflow: hidden;
 }
 
-.title-results {
+.title-results-current {
     position: sticky;
     top: 0;
     padding: 10px;
-    background-color: #ffaa7d;
+    background-color: #ce762ed8;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.title-results-all {
+    position: sticky;
+    top: 0;
+    padding: 10px;
+    background-color: #ebd61ed2;
     flex-direction: row;
     display: flex;
     justify-content: space-evenly;

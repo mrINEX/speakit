@@ -17,14 +17,12 @@ header.innerHTML = `
     <div class="wrapper header__wrapper">
         <div class="header__level">
             <input class="level_range" type="range" value="0" min="0" max="5" step="1" list="tickmarks">
-            <datalist id="tickmarks">
-                <option value="0">
-                <option value="1">
-                <option value="2">
-                <option value="3">
-                <option value="4">
-                <option value="5">
-            </datalist>
+            <p class="level_1">1</p>
+            <p class="level_2">2</p>
+            <p class="level_3">3</p>
+            <p class="level_4">4</p>
+            <p class="level_5">5</p>
+            <p class="level_6">6</p>
         </div>
         <h2 class="level_chapter"> level 1</h2>
     </div>
@@ -57,7 +55,7 @@ statistics.setAttribute('class', 'statistics hidden');
 statistics.innerHTML = `
     <div class=" wrapper statistics__results">
         <div class="wrapper_current">
-            <div class="title-results">
+            <div class="title-results-current">
                 <p>know: <strong class="know">0</strong></p>
                 <p>pending: <strong class="pending">10</strong></p>
                 <p>errors speech: <strong class="errors-speech">0</strong></p>
@@ -66,7 +64,7 @@ statistics.innerHTML = `
             </div>
         </div>
         <div class="wrapper_all">
-            <div class="title-results">
+            <div class="title-results-all">
                 all games: <strong class="all-result-words">0</strong>
             </div>
             <div class="all_statistics">
