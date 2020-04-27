@@ -10,7 +10,7 @@ function walkTree(node, dateStorage) {
       node.setAttribute('class', 'wrapper_current-allgame');
       node.prepend(dateStorage);
     }
-    if (node.classList.contains('title-results')) {
+    if (node.classList.contains('title-results-current')) {
       node.removeAttribute('class');
       node.setAttribute('class', 'title-results-allgame');
     }
