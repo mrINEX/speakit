@@ -34,8 +34,8 @@
 }
 
 .wrapper_current-allgame {
-    background: #d2b755;
-    border: 2px solid;
+    background: #f9fffbcf;
+    border: 2px solid #0b2d25;
     display: inline-block;
     margin: 5px;
     width: 70%;
@@ -46,7 +46,7 @@
     width: 600px;
     position: relative;
     overflow-y: auto;
-    background-color: #093c4c7d;
+    background-color: #132c3c7a;
 }
 
 .statistics__word {
@@ -83,8 +83,9 @@
 .title-results-all {
     position: sticky;
     top: 0;
+    color: white;
     padding: 10px;
-    background-color: #ebd61ec2;
+    background-color: #132c3ce6;
     flex-direction: row;
     display: flex;
     justify-content: space-evenly;
@@ -106,7 +107,7 @@
 }
 
 .date-stapm-game {
-    background: darkslategray;
+    background: #0b2d25;
     color: white;
     height: 25px;
 }
